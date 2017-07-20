@@ -13,22 +13,23 @@ class PostsController extends AppController {
     }
 
     public function admin_index() {
+    	$this->layout = 'admin';
     	$this->set('posts', $this->Post->find('all'));
     }
 
     public function admin_add() {
-
+    	$this->layout = 'admin';
         if ($this->request->is('post')) {
         	$this->request->data['Post']['user_id'] = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
-                $this->Flash->success('Your post has been saved.');
+                $this->Flash->success('Se ha guardado correctamente.');
                 $this->redirect(array('action' => 'admin_index'));
             }
         }
     }
 
     public function admin_edit($id = null) {
-
+    	$this->layout = 'admin';
 	    if (!$id) {
 	        throw new NotFoundException(__('Invalid post'));
 	    }
@@ -42,10 +43,10 @@ class PostsController extends AppController {
 	        $this->Post->id = $id;
 	        $this->request->data['Post']['user_id'] = $this->Auth->user('id');
 	        if ($this->Post->save($this->request->data)) {
-	            $this->Flash->success(__('Your post has been updated.'));
+	            $this->Flash->success(__('Se ha modificado correctamente.'));
 	            return $this->redirect(array('action' => 'admin_index'));
 	        }
-	        $this->Flash->error(__('Unable to update your post.'));
+	        $this->Flash->error(__('No se ha podido modificar su post. Inténtelo nuevamente.'));
 	    }
 
 	    if (!$this->request->data) {
@@ -59,7 +60,7 @@ class PostsController extends AppController {
 	    }
 	    $this->request->data['Post']['user_id'] = $this->Auth->user('id');
 	    if ($this->Post->delete($id)) {
-	        $this->Flash->success('The post with id: ' . $id . ' has been deleted.');
+	        $this->Flash->success('El post ha sido eliminado.');
 	        $this->redirect(array('action' => 'admin_index'));
 	    }
 	}

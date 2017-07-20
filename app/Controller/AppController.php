@@ -51,6 +51,8 @@ class AppController extends Controller {
     );
 
     public function beforeFilter() {
+        $this->set('title_for_layout', 'Visita Chile');
         $this->Auth->allow('index', 'view');
     }
+
 }

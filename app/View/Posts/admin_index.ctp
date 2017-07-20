@@ -1,30 +1,24 @@
-<h1>Post Admin</h1>
-<p><?php echo $this->Html->link("Add Post", array('action' => 'admin_add')); ?></p>
-<table>
+<h1>Administrador de Posts</h1>
+<p><?php echo $this->Html->link("Agregar Post", array('action' => 'admin_add'), array('class' => 'btn btn-danger')); ?></p>
+<table class="table table-striped">
     <tr>
-        <th>Id</th>
-        <th>Title</th>
-                <th>Action</th>
-        <th>Created</th>
+        <th>Título</th>
+        <th class="text-center">Acciones</th>
     </tr>
 
-<!-- Here's where we loop through our $posts array, printing out post info -->
-
 <?php foreach ($posts as $post): ?>
-    <tr>
-        <td><?php echo $post['Post']['id']; ?></td>
-        <td>
-            <?php echo $this->Html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?>
-                </td>
-                <td>
-            <?php echo $this->Form->postLink(
-                'Delete',
-                array('action' => 'admin_delete', $post['Post']['id']),
-                array('confirm' => 'Are you sure?')
-            )?>
-            <?php echo $this->Html->link('Edit', '/admin/edit/' . $post['Post']['id']);?>
+    <tr >
+        <td class="col-lg-10">
+            <?php echo $post['Post']['title'];?>
         </td>
-        <td><?php echo $post['Post']['created']; ?></td>
+        <td class="col-lg-2 text-center">
+            <?php echo $this->Html->link('<span class="glyphicon glyphicon-pencil"></span>', '/admin/edit/' . $post['Post']['id'], array('escape' => false));?>
+            <?php echo $this->Form->postLink(
+                '<span class="glyphicon glyphicon-remove text-danger"></span>',
+                array('action' => 'admin_delete', $post['Post']['id']),
+                array('confirm' => '¿Estás seguro que desea eliminar este post?', 'escape' => false)
+            )?>
+        </td>
     </tr>
 <?php endforeach; ?>
 

@@ -35,21 +35,10 @@
 	<?php echo $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'); ?>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
-					<ul class="nav navbar-nav navbar-right">
-				        <li><?php echo $this->Html->link("Login", array('controller' => 'users','action' => 'login')); ?></li>
-				    </ul>
-				</div> 	
-			</div>
-		</div>
-	</nav>
 	<div id="container" class="container">
 		
 		<div class="row">
-			<div id="content" class="col-lg-8 col-lg-offset-2 center">
+			<div id="content" class="col-lg-4 col-lg-offset-4 center">
 
 				<?php echo $this->Flash->render(); ?>
 
