@@ -12,11 +12,11 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('Usuario guardado'));
                 return $this->redirect(array('action' => 'login'));
             }
             $this->Session->setFlash(
-                __('The user could not be saved. Please, try again.')
+                __('Error al guardar el usuario. Inténtelo nuevamente.')
             );
         }
     }
@@ -30,8 +30,8 @@ class UsersController extends AppController {
                 return $this->redirect(array('action' => 'admin_index', 'controller' => 'posts'));
             }
 
+            $this->Session->setFlash(__('Usuario y/o contraseña incorréctos.'));
             return $this->redirect(array('action' => 'login'));
-            $this->Session->setFlash(__('Invalid username or password, try again'));
         }
     }
 

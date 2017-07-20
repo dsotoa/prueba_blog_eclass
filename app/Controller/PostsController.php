@@ -31,12 +31,12 @@ class PostsController extends AppController {
     public function admin_edit($id = null) {
     	$this->layout = 'admin';
 	    if (!$id) {
-	        throw new NotFoundException(__('Invalid post'));
+	        throw new NotFoundException(__('Post Inválido'));
 	    }
 
 	    $post = $this->Post->findById($id);
 	    if (!$post) {
-	        throw new NotFoundException(__('Invalid post'));
+	        throw new NotFoundException(__('Post Inválido'));
 	    }
 
 	    if ($this->request->is(array('post', 'put'))) {
